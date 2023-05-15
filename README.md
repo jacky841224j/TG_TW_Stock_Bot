@@ -1,11 +1,19 @@
 # TG 台股查詢機器人 基本使用教學  :memo:
 
+使用方法：
+1.
 下載後將appsettings裡的APIkey換成自己的API Key後執行檔案即可使用
-也可打包成Docker使用，Dockerfile已經寫好了，直接使用下面指令build即可
 
+2.
+打包成Docker使用，Dockerfile已經寫好了，直接使用下面指令build即可
 Docker build 指令
 ```cmd
 docker build -t 名稱 . --no-cache
+```
+
+3.從docker hub 下載images
+```cmd
+docker pull jacky841224j/tgbot-tw-stock
 ```
 
 若單純想測試功能者，可以使用內建的測試用機器人
