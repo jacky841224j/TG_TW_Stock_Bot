@@ -1,6 +1,7 @@
 # TG 台股查詢機器人 基本使用教學  :memo:
 
 使用方法：
+
 1.
 下載後將appsettings裡的APIkey換成自己的API Key後執行檔案即可使用
 
