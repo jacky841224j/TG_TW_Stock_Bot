@@ -1,0 +1,8 @@
+.vs
+playwright/.auth
+TestProject1
+.vscode
+app.yaml
+bin
+obj
+TGbot_TWstock.csproj.user
