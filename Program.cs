@@ -140,7 +140,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
             {
                 //路徑會依瀏覽器版本不同有差異，若有錯時請修正路徑
                 //使用docker執行時須使用下面參數，本機直接執行則不用
-                // ExecutablePath = "/root/.cache/ms-playwright/chromium-1055/chrome-linux/chrome",
+                ExecutablePath = "/root/.cache/ms-playwright/chromium-1055/chrome-linux/chrome",
                 Args = new[] {
                     "--disable-dev-shm-usage",
                     "--disable-setuid-sandbox",
@@ -176,7 +176,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
 
             #region TradingView
 
-            if (messageText.Contains("/chart"))
+            else if (messageText.Contains("/chart"))
             {
                 if (text.Count == 2)
                 {
@@ -193,7 +193,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                 }
             }
 
-            if (messageText.Contains("/range"))
+            else if(messageText.Contains("/range"))
             {
                 if (text.Count == 3)
                 {
@@ -263,7 +263,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
             #region 鉅亨網
 
             //K線
-            if (messageText.Contains("/k"))
+            else if(messageText.Contains("/k"))
             {
                 Console.WriteLine($"讀取網站中...");
                 await page.GotoAsync($"https://www.cnyes.com/twstock/{StockNumber}",
@@ -348,7 +348,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                 }
             }
             //詳細報價
-            if (messageText.Contains("/v"))
+            else if(messageText.Contains("/v"))
             {
                 if (text.Count == 2)
                 {
@@ -395,7 +395,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                 }
             }
             //績效
-            if (messageText.Contains("/p"))
+            else if(messageText.Contains("/p"))
             {
                 if (text.Count == 2)
                 {
@@ -415,7 +415,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                 }
             }
             //新聞
-            if (messageText.Contains("/n"))
+            else if(messageText.Contains("/n"))
             {
                 if (text.Count == 2)
                 {
