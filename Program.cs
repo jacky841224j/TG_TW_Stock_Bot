@@ -140,7 +140,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
             {
                 //路徑會依瀏覽器版本不同有差異，若有錯時請修正路徑
                 //使用docker執行時須使用下面參數，本機直接執行則不用
-                ExecutablePath = "/root/.cache/ms-playwright/chromium-1055/chrome-linux/chrome",
+                // ExecutablePath = "/root/.cache/ms-playwright/chromium-1055/chrome-linux/chrome",
                 Args = new[] {
                     "--disable-dev-shm-usage",
                     "--disable-setuid-sandbox",
@@ -269,7 +269,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                 await page.GotoAsync($"https://www.cnyes.com/twstock/{StockNumber}",
                     new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle }).WaitAsync(new TimeSpan(0, 1, 0));
                 Console.WriteLine($"擷取網站中...");
-                var stockName = await page.TextContentAsync("//h2[@class= 'jsx-3098318342']");
+                var stockName = await page.TextContentAsync("//h2[@class= 'jsx-162737614']");
                 string range = "日K";
                 if (text.Count == 2)
                 {
@@ -360,8 +360,8 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                     await page.GetByRole(AriaRole.Button, new() { Name = "日K" }).ClickAsync();
                     await page.WaitForTimeoutAsync(1000);
                     //詳細報價
-                    var stockPrice = await page.TextContentAsync("//h3[@class= 'jsx-3098318342 fall']");
-                    var returnStockUD = await page.QuerySelectorAllAsync("//div[@class= 'jsx-3098318342 first-row'] >> //span[@class= 'jsx-3098318342']");
+                    var stockPrice = await page.TextContentAsync("//span[@class= 'jsx-162737614']");
+                    var returnStockUD = await page.QuerySelectorAllAsync("//div[@class= 'jsx-162737614 first-row'] >> //span[@class= 'jsx-162737614']");
                     var StockUD = new string[] { await returnStockUD[0].TextContentAsync(), await returnStockUD[1].TextContentAsync() };
                     var returnText = await page.QuerySelectorAllAsync("//li[@class= 'jsx-1282029765'] >> //span[@class= 'jsx-1282029765 value']");
                     //選擇輸出欄位
@@ -403,9 +403,9 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                     await page.GotoAsync($"https://www.cnyes.com/twstock/{StockNumber}",
                         new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle }).WaitAsync(new TimeSpan(0, 1, 0));
                     Console.WriteLine($"擷取網站中...");
-                    var stockName = await page.TextContentAsync("//h2[@class= 'jsx-3098318342']");
+                    var stockName = await page.TextContentAsync("//h2[@class= 'jsx-162737614']");
                     //股價
-                    var stream = new MemoryStream(await page.Locator("//table[@class= 'jsx-960859598 flex']").ScreenshotAsync());
+                    var stream = new MemoryStream(await page.Locator($"//div[@class= 'jsx-1153482968 tw-chart-container']").ScreenshotAsync());
                     sentMessage = await botClient.SendPhotoAsync(
                         caption: $"{stockName} 績效表現　✨",
                         chatId: chatId,
@@ -424,7 +424,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                         new PageGotoOptions { WaitUntil = WaitUntilState.NetworkIdle }).WaitAsync(new TimeSpan(0, 1, 0));
                     Console.WriteLine($"擷取網站中...");
 
-                    var stockName = await page.TextContentAsync("//h2[@class= 'jsx-3098318342']");
+                    var stockName = await page.TextContentAsync("//h2[@class= 'jsx-162737614']");
                     var returnTitle = await page.QuerySelectorAllAsync("//h3[@class= 'jsx-2831776980']");
                     var returnUrl = await page.QuerySelectorAllAsync("//a[@class= 'jsx-2831776980 container shadow']");
 
